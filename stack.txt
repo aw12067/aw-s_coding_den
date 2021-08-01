@@ -1,0 +1,64 @@
+public class Stack
+{
+    int arr[] = new int[5];
+    int top = -1;
+    public int isempty()
+    {
+        if(top==-1)
+        {
+            return 1;
+        }
+        return 0;
+    }
+    public int isfull()
+    {
+        if(top==arr.length-1)
+        {
+            return 1;
+        }
+        return 0;
+    }
+    public void push(int x)
+    {
+        if(isfull()==0)
+        {
+            top++;
+            arr[top]=x;
+        }
+        else
+        {
+            System.out.println("Full");
+        }
+    }
+    public void pop()
+    {
+        if(isempty()==0)
+        {
+            System.out.println(arr[top]);
+            top--;
+        }
+        else
+        {
+            System.out.println("empty");
+        }
+    }
+    public void print()
+    {
+        for(int i:arr)
+        {
+            System.out.print(i+" "); 
+        }
+    }
+    public static void main(String []args)
+    {
+        Stack stack = new Stack();
+        stack.pop();
+        stack.push(5);
+        stack.push(4);
+        stack.push(3);
+        stack.push(2);
+        stack.push(1);
+        stack.pop();
+        stack.print();
+    }
+}

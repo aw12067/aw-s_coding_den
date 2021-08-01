@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Validation</title>
+	<link rel="stylesheet"  href="form_style.css">
+</head>
+<script type="text/javascript">
+	function validate()
+	{
+		var pas = form1.pass.value;
+		var conpas = form1.conpass.value;
+		var mob_no = form1.mob_no.value;
+		var email = form1.email.value;
+		var pattern = /^ ([a-zA-Z0-9\.\_\-])+\@([a-zA-Z0-9\-])+\.+([a-zA-Z0-9]{2,4})+$/
+		var flag = false;
+		var msg = " ";
+		if(pas.trim() === "" || conpas.trim() === "" || conpas!=pas)
+		{
+			flag = true;
+			msg = "Password or Confirm password is blank or does not match"
+		}
+		if(mob_no.trim() === "" || isNaN(mob_no) || mob_no.length <12)
+		{
+			flag = true;
+			msg = "Invalid mobile number"
+		}
+		if(!pattern.test(email))
+		{
+			flag = false;
+			msg = "Invalid email address";
+		}
+		if(flag)
+		{
+			alert("warning: "+msg);
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+</script>
+<body>
+<h1>Assignment 2A</h1>
+<form id="form1" name="form1" action="">
+	<div>
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="email" placeholder="Enter your email address"></input>
+	</div>
+	<div>
+		<label for="pass">Password:</label>
+		<input type="Password" name="pass" id="pass" placeholder="Enter your Password"></input>
+	</div>
+	<div>
+		<label for="conpass">Confirm-Password:</label>
+		<input type="Password" name="conpass" id="conpass" placeholder="Confirm your Password"></input>
+	</div>
+	<div>
+		<label for="mob_no">Mobile Number</label>
+		<input type="text" name="mob_no" id="mob_no" placeholder="Enter mobile number"></input>
+	</div>
+	<div>
+		<input type="submit" value="Submit" onclick="return validate()">
+	</div>
+	<div>
+		<input type="reset" value="Reset">
+	</div>
+	
+</form>
+</body>
+</html>

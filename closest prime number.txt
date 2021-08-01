@@ -1,0 +1,56 @@
+import java.util.*;
+public class Main
+{
+    static int max = 100005;
+    static ArrayList<Integer> prime = new ArrayList<Integer>();
+    public static void sieve(int num)
+    {
+        boolean arr[] = new boolean[max+1];
+        Arrays.fill(arr,true);
+        for(int i=2;i*i<=max;i++)
+        {
+            if(arr[i]==true)
+            {
+                for(int j=i*i;j<=max;j+=i)
+                {
+                    arr[j] = false;
+                }
+            }
+        }
+        int loc = 0;
+        for(int i=2;i<=max;i++)
+        {
+            if(arr[i] == true)
+            {
+                prime.add(i);
+            }
+            if(i<num && arr[i]==true)
+            {
+                loc = prime.size();
+            }
+        }
+        closest(num,loc-1);
+    }
+    public static void closest(int num,int loc)
+    {
+        int div1 = Math.abs(prime.get(loc)-num);
+        int div2 = Math.abs(prime.get(loc+1)-num);
+        if(div2>div1)
+        {
+            System.out.println(prime.get(loc));
+        }
+        else if(div1>div2)
+        {
+            System.out.println(prime.get(loc+1));
+        }
+        else
+        {
+            System.out.println(prime.get(loc+1)+" "+prime.get(loc));
+        }
+    }
+	public static void main(String[] args) 
+	{
+	    int num = 20;
+	    sieve(num);
+	}
+}

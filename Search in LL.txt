@@ -1,0 +1,98 @@
+import java.util.*;
+public class LinkedList
+{
+    static Node head;
+    static class Node
+    {
+        int data;
+        Node next;
+        Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+    }
+    public void insert(int d)
+    {
+        Node new_node = new Node(d);
+        if(head==null)
+        {
+            head=new_node;
+        }
+        else
+        {
+            Node last = head;
+            while(last.next!=null)
+            {
+                last = last.next;
+            }
+            last.next = new_node;
+        }
+    }
+    public void delete(int d)
+    {
+        Node curr = head;
+        Node prev = null;
+        if(head!=null && head.data==d)
+        {
+            head = curr.next;
+        }
+        while(curr.data!=d && curr!=null)
+        {
+            prev = curr;
+            curr = curr.next;
+        }
+        if(curr!=null)
+        {
+            prev.next=curr.next;
+        }
+        if(curr==null)
+        {
+            System.out.println("Not found");
+        }
+    }
+    //Iterative
+    public static boolean Search(int x)
+    {
+        Node curr = head;
+        while(curr!=null)
+        {
+            if(curr.data==x)
+            {
+                return true;
+            }
+            curr = curr.next;
+        }
+        return false;
+    }
+    //Recursive
+    public static boolean Search_r(Node node,int x)
+    {
+        if(node==null)
+            return false;
+        
+        if(node.data==x)
+            return true;
+            
+        return Search_r(node.next,x);
+    }
+    public void display()
+    {
+        Node curr = head;
+        while(curr!=null)
+        {
+            System.out.println(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        LinkedList list = new LinkedList();
+        list.insert(2);
+        list.insert(3);
+        list.insert(1);
+        list.insert(5);
+        list.insert(6);
+        System.out.println(Search_r(head,2));
+    }
+}

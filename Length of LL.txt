@@ -1,0 +1,97 @@
+import java.util.*;
+public class LinkedList
+{
+    static Node head;
+    static class Node
+    {
+        int data;
+        Node next;
+        Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+    }
+    public void insert(int d)
+    {
+        Node new_node = new Node(d);
+        if(head==null)
+        {
+            head=new_node;
+        }
+        else
+        {
+            Node last = head;
+            while(last.next!=null)
+            {
+                last = last.next;
+            }
+            last.next = new_node;
+        }
+    }
+    public void delete(int d)
+    {
+        Node curr = head;
+        Node prev = null;
+        if(head!=null && head.data==d)
+        {
+            head = curr.next;
+        }
+        while(curr.data!=d && curr!=null)
+        {
+            prev = curr;
+            curr = curr.next;
+        }
+        if(curr!=null)
+        {
+            prev.next=curr.next;
+        }
+        if(curr==null)
+        {
+            System.out.println("Not found");
+        }
+    }
+    //Iterative way
+    public void length()
+    {
+        Node current = head;
+        int count = 0;
+        while(current!=null)
+        {
+            count++;
+            current = current.next;
+        }
+        System.out.println(count);
+    }
+    
+    //Recursive way
+    public int length_r()
+    {
+        return getCountRec(head);
+    }
+    public int getCountRec(Node node)
+    {
+        if (node == null)
+            return 0;
+            
+        return 1 + getCountRec(node.next);
+    }
+    public void display()
+    {
+        Node curr = head;
+        while(curr!=null)
+        {
+            System.out.println(curr.data+" ");
+            curr=curr.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        LinkedList list = new LinkedList();
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
+        System.out.println(list.length_r());
+    }
+}

@@ -1,0 +1,118 @@
+import java.io.*;
+
+public class Rotation
+{
+	
+static int N = 4;
+
+static void rotate90Clockwise(int a[][])
+{
+
+	// Traverse each cycle
+	for (int i = 0; i < N / 2; i++)
+	{
+		for (int j = i; j < N - i - 1; j++)
+		{
+			int temp = a[i][j];
+			a[i][j] = a[N - 1 - j][i];
+			a[N - 1 - j][i] = a[N - 1 - i][N - 1 - j];
+			a[N - 1 - i][N - 1 - j] = a[j][N - 1 - i];
+			a[j][N - 1 - i] = temp;
+			printMatrix(a);
+		}
+	}
+}
+
+// Function for print matrix
+static void printMatrix(int arr[][])
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		System.out.print( arr[i][j] + " ");
+		System.out.println();
+	}
+	System.out.println();
+}
+
+// Driver code
+
+	public static void main (String[] args)
+	{
+			int arr[][] = { { 1, 2, 3, 4 },
+					{ 5, 6, 7, 8 },
+					{ 9, 10, 11, 12 },
+					{ 13, 14, 15, 16 } };
+					printMatrix(arr);
+	rotate90Clockwise(arr);
+	}
+}
+
+// This code has been contributed by inder_verma.
+
+
+import java.util.*;
+public class Main
+{
+    public static void transpose(int arr[][])
+    {
+        int n = arr.length;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                if(i!=j)
+                {
+                    int temp = arr[i][j];
+                    arr[i][j] = arr[j][i];
+                    arr[j][i] = temp;
+                }
+            }
+        }
+        reverse(arr);
+    }
+    public static void reverse(int arr[][])
+    {
+        for(int i=0;i<4;i++)
+        {
+            int li = 0;
+            int ri = 3;
+            while(li<ri)
+            {
+                int temp = arr[i][li];
+                arr[i][li] = arr[i][ri];
+                arr[i][ri] = temp;
+                li++;
+                ri--;
+            }
+        }
+    }
+    public static void print(int arr[][])
+    {
+        for(int i=0;i<4;i++)
+		{
+		    for(int j=0;j<4;j++)
+		    {
+		        System.out.print(arr[i][j]);
+		    }
+		    System.out.println();
+		}
+		System.out.println();
+    }
+	public static void main(String[] args) 
+	{
+		int arr[][] = new int[4][4];
+		Scanner sc = new Scanner(System.in);
+		for(int i=0;i<4;i++)
+		{
+		    for(int j=0;j<4;j++)
+		    {
+		        arr[i][j] = sc.nextInt();
+		    }
+		}
+		print(arr);
+		transpose(arr);
+		print(arr);
+	}
+}
+

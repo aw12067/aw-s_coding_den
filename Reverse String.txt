@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void reverse(char reverse[],int len)
+    {
+        int start = 0;
+        while(start<len)
+        {
+            reverse[start]^=reverse[len];
+            reverse[len]^=reverse[start];
+            reverse[start]^=reverse[len];
+            start++;
+            len--;
+        }
+        System.out.print(String.valueOf(reverse));
+    }
+     public static void main(String []args)
+     {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        reverse(s.toCharArray(),s.length()-1);
+     }
+}

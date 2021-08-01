@@ -1,0 +1,82 @@
+import java.util.*;
+public class MirrorTree
+{
+    static Node root;
+    static class Node
+    {
+        int key;
+        Node left,right;
+        Node(int k)
+        {
+            key = k;
+            left = right = null;
+        }
+    }
+    void insert(int key)
+    {
+         root = insertRec(root, key);
+    }
+    Node insertRec(Node root,int key)
+    {
+        if(root==null)
+        {
+            root = new Node(key);
+            return root;
+        }
+        if(key<root.key)
+        {
+            root.left = insertRec(root.left,key);
+        }
+        else if(key>root.key)
+        {
+            root.right = insertRec(root.right,key);
+        }
+        return root;
+    }
+    void mirror()
+    {
+        root = Mirror(root);
+    }
+    Node Mirror(Node root)
+    {
+        if(root==null)
+        {
+            return root;
+        }
+        Node left = Mirror(root.left);
+        Node right = Mirror(root.right);
+        
+        root.left = right;
+        root.right = left;
+        
+        return root;
+    }
+    void inorder()
+    {
+        inorderRec(root);
+    }
+    void inorderRec(Node root)
+    {
+        if (root != null) 
+        {
+            inorderRec(root.left);
+            System.out.print(root.key+" ");
+            inorderRec(root.right);
+        }
+    }
+    public static void main(String[] args)
+    {
+        MirrorTree tree = new MirrorTree();
+        tree.insert(5);
+        tree.insert(3);
+        tree.insert(4);
+        tree.insert(2);
+        tree.insert(7);
+        tree.insert(8);
+        tree.insert(6);
+        tree.inorder();
+        tree.mirror();
+        System.out.println();
+        tree.inorder();
+    }
+}

@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		String str = "aabcccccaaa";
+		char arr[] = str.toCharArray();
+		int i = 0;
+		while(i<arr.length)
+		{
+		    int j = i+1;
+		    boolean flag = true;
+		    int cnt=1;
+		    while(flag && j<arr.length)
+		    {
+		        if(arr[i]==arr[j])
+		        {
+		            j++;
+		            cnt++;
+		        }
+		        else
+		        {
+		            flag = false;
+		        }
+		    }
+		    System.out.print(arr[i]+""+cnt);
+		    i=j;
+		}
+	}
+}

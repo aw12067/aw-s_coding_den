@@ -1,0 +1,57 @@
+import java.util.*;
+public class Main
+{
+    public static boolean perfectsquare(int n)
+    {
+        int rt = (int)Math.sqrt(n);
+        if(Math.pow(rt,2)==n)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static boolean fib(int num)
+    {
+        if(perfectsquare(5*num*num + 4) || perfectsquare(5*num*num - 4))
+        {
+            return true;
+        }
+        return false;
+    }
+    public static void sum(int num)
+    {
+        int sum = 1;
+        ArrayList<Integer> store = new ArrayList<Integer>();
+        store.add(0);
+        store.add(1);
+        int i = 2;
+        boolean flag = true;
+        while(flag)
+        {
+            int check = store.get(i-1)+store.get(i-2);
+            if(check>num)
+            {
+                System.out.println(sum);
+                break;
+            }
+            else
+            {
+                sum+=check;
+                store.add(check);
+                i++;
+            }
+        }
+    }
+    public static void main (String[] args)
+    {
+        int num = 20;
+        if(fib(num))
+        {
+            System.out.println("Fibonnaci number");
+        }
+        else
+        {
+            sum(num);
+        }
+    }
+}

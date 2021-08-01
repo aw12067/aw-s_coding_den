@@ -1,0 +1,34 @@
+import java.util.*;
+public class Main
+{
+    public static void main (String[] args)
+    {
+        String str = "aaabbbddttggh";
+        ArrayList<Character> result = new ArrayList<Character>();
+        char arr[] = str.toCharArray();
+        HashSet<Character> store = new HashSet<Character>();
+        for(char i:arr)
+        {
+            if(store.contains(i))
+            {
+                if(result.contains(i))
+                {
+                    result.remove(result.indexOf(i));
+                }
+            }
+            else
+            {
+                store.add(i);
+                result.add(i);
+            }
+        }
+        if(result.size()>0)
+        {
+            System.out.println(result.get(0));
+        }
+        else
+        {
+            System.out.println("All character are repeating");
+        }
+    }
+}

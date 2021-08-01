@@ -1,0 +1,77 @@
+import java.util.*;
+import java.util.Queue;
+import java.util.TreeMap;
+import java.util.Vector;
+import java.util.Map.Entry;
+public class BinarySearchTree
+{
+    static Node root;
+    static int max_level = 0;
+    static class Node
+    {
+        int key;
+        Node left,right;
+        Node(int k)
+        {
+            key = k;
+            left = right = null;
+        }
+    }
+    void insert(int key)
+    {
+         root = insertRec(root, key);
+    }
+    Node insertRec(Node root,int key)
+    {
+        if(root==null)
+        {
+            root = new Node(key);
+            return root;
+        }
+        if(key<root.key)
+        {
+            root.left = insertRec(root.left,key);
+        }
+        else if(key>root.key)
+        {
+            root.right = insertRec(root.right,key);
+        }
+        return root;
+    }
+    void leftViewUtil(Node node, int level)
+    {
+        // Base Case
+        if (node == null)
+            return;
+ 
+        // If this is the first node of its level
+        if (max_level < level) {
+            System.out.print(" " + node.key);
+            max_level = level;
+        }
+ 
+        // Recur for left and right subtrees
+        leftViewUtil(node.left, level + 1);
+        leftViewUtil(node.right, level + 1);
+    }
+ 
+    // A wrapper over leftViewUtil()
+    void leftView()
+    {
+        leftViewUtil(root, 1);
+    }
+ 
+    
+    public static void main(String[] args)
+    {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.insert(5);
+        tree.insert(3);
+        tree.insert(4);
+        tree.insert(2);
+        tree.insert(7);
+        tree.insert(8);
+        tree.insert(6);
+        tree.leftView();
+    }
+}

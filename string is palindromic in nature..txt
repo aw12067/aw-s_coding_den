@@ -1,0 +1,86 @@
+import java.util.*;
+public class Palindrome
+{
+    public static int check_pal(String str)
+    {
+        Stack<Character> stack = new Stack<Character>();
+        int len = str.length();
+        int mid = len/2;
+        if(len%2!=0)
+        {
+            for(int i=0;i<mid;i++)
+            {
+                stack.push(str.charAt(i));
+            }
+            for(int i=mid+1;i<len;i++)
+            {
+                char c = stack.pop();
+                if(str.charAt(i)==c)
+                {
+                    continue;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        else
+        {
+            for(int i=0;i<mid;i++)
+            {
+                stack.push(str.charAt(i));
+            }
+            for(int i=mid;i<len;i++)
+            {
+                char c = stack.pop();
+                if(str.charAt(i)==c)
+                {
+                    continue;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+    }
+    public static void main(String []args)
+    {
+        String str = "abcbh";
+        System.out.println(check_pal(str));
+    }
+}
+
+
+import java.util.Scanner;
+public class Main
+{
+    public static boolean check_pal(String s)
+    {
+       int len = s.length()-1;
+       for(int i=0;i<len/2;i++)
+       {
+           if(s.charAt(i)!=s.charAt(len-i))
+           {
+               return false;
+           }
+       }
+       return true;
+    }
+     public static void main(String []args)
+     {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        if(check_pal(s))
+        {
+            System.out.println("Yes");
+        }
+        else
+        {
+            System.out.println("No");
+        }
+     }
+}
